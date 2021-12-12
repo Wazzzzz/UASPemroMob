@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_page_1/main.dart';
-import 'package:login_page_1/screens/makanan.dart';
+
+
+import 'makanan.dart';
 
 class DetailsPage extends StatefulWidget {
   final heroTag;

@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:login_page_1/constants.dart';
+import 'package:login_page_1/main.dart';
+import 'package:login_page_1/screens/login_view.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
 
   static const routeName = "/registerPage";
 
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController username = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+  TextEditingController noTelepon = new TextEditingController();
+  TextEditingController alamat = new TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    username.dispose();
+    password.dispose();
+    noTelepon.dispose();
+    alamat.dispose();
+
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +94,7 @@ class RegisterPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 12.0),
         ),
         TextFormField(
+          controller: username,
           decoration: const InputDecoration(
             border: UnderlineInputBorder(),
             enabledBorder: UnderlineInputBorder(
@@ -96,6 +119,7 @@ class RegisterPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 12.0),
         ),
         TextFormField(
+          controller: password,
           decoration: const InputDecoration(
             border: UnderlineInputBorder(),
             enabledBorder: UnderlineInputBorder(
@@ -120,7 +144,9 @@ class RegisterPage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: 12.0),
         ),
+        
         TextFormField(
+          controller: noTelepon,
           decoration: const InputDecoration(
             border: UnderlineInputBorder(),
             enabledBorder: UnderlineInputBorder(
@@ -135,11 +161,32 @@ class RegisterPage extends StatelessWidget {
                 width: 3.0,
               ),
             ),
-            hintText: "Confirm Password",
+            hintText: "No Telepon",
             hintStyle: TextStyle(color: ColorPalette.hintColor),
           ),
           style: TextStyle(color: Colors.white),
-          obscureText: true,
+          autofocus: false,
+        ),
+        TextFormField(
+          controller: alamat,
+          decoration: const InputDecoration(
+            border: UnderlineInputBorder(),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: ColorPalette.underlineTextField, 
+                width: 1.5,
+              ),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.white,
+                width: 3.0,
+              ),
+            ),
+            hintText: "Alamat",
+            hintStyle: TextStyle(color: ColorPalette.hintColor),
+          ),
+          style: TextStyle(color: Colors.white),
           autofocus: false,
         ),
       ],
@@ -166,6 +213,14 @@ class RegisterPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(30.0),
             ),
           ),
+          onTap: (){
+            print([username.text, password.text, noTelepon.text, alamat.text]);
+            listaccount.add([username.text, password.text, noTelepon.text, alamat.text]);
+            Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return LoginPage();
+                        }));
+          },
         ),
         Padding(
           padding: EdgeInsets.only(top: 16.0),

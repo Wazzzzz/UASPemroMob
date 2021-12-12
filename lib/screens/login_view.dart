@@ -1,9 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:login_page_1/constants.dart';
+import 'package:login_page_1/main.dart';
 import 'package:login_page_1/screens/register_view.dart';
 import 'package:login_page_1/screens/makanan.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController username = new TextEditingController();
+
+  TextEditingController password = new TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    username.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +48,10 @@ class LoginPage extends StatelessWidget {
 
   Widget _iconLogin() {
     return Image.asset(
-              "assets/images/foodanddrink.png",
-              width: 150.0,
-              height: 150.0,
-            );
+      "assets/images/foodanddrink.png",
+      width: 150.0,
+      height: 150.0,
+    );
   }
 
   Widget _titleDescription() {
@@ -71,11 +89,12 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 12.0),
         ),
         TextFormField(
+          controller: username,
           decoration: const InputDecoration(
             border: UnderlineInputBorder(),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                color: ColorPalette.underlineTextField, 
+                color: ColorPalette.underlineTextField,
                 width: 1.5,
               ),
             ),
@@ -95,11 +114,12 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 12.0),
         ),
         TextFormField(
+          controller: password,
           decoration: const InputDecoration(
             border: UnderlineInputBorder(),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                color: ColorPalette.underlineTextField, 
+                color: ColorPalette.underlineTextField,
                 width: 1.5,
               ),
             ),
@@ -140,6 +160,18 @@ class LoginPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(30.0),
             ),
           ),
+          onTap: () {
+            print([username.text, password.text]);
+            for (int i = 0; i < listaccount.length; i++) {
+              if (username.text == listaccount[i][0] && password.text == listaccount[i][1]){
+                mainaccount = listaccount[i]; 
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()) );
+                break;
+                  
+              }
+            }
+            
+          },
         ),
         Padding(
           padding: EdgeInsets.only(top: 16.0),

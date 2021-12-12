@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:login_page_1/screens/detailsPage.dart';
-import 'package:login_page_1/screens/minuman.dart';
-
+import 'package:login_page_1/screens/about_us.dart';
 import 'profile.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -44,22 +45,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var _menu = [
     Menu(
-        imgPath: 'assets/plate1.png',
+        imgPath: 'assets/images/plate1.png',
         foodName: 'Bakso',
         price: 10000,
         jumlah: 0),
     Menu(
-        imgPath: 'assets/plate2.png',
+        imgPath: 'assets/images/plate2.png',
         foodName: 'Nasi Goreng',
         price: 10000,
         jumlah: 0),
     Menu(
-        imgPath: 'assets/plate6.png',
+        imgPath: 'assets/images/plate6.png',
         foodName: 'Sate Ayam',
         price: 15000,
         jumlah: 0),
     Menu(
-        imgPath: 'assets/plate5.png',
+        imgPath: 'assets/images/plate5.png',
         foodName: 'Rendang',
         price: 20000,
         jumlah: 0),
@@ -154,16 +155,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    IconButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return MinumanPage();
-                        }));
-                      },
-                      icon: Icon(Icons.local_drink),
-                      iconSize: 30.0,
-                    ),
+                    // IconButton(
+                    //   onPressed: () {
+                    //     Navigator.push(context,
+                    //         MaterialPageRoute(builder: (context) {
+                    //       return AboutUs();
+                    //     }));
+                    //   },
+                    //   icon: Icon(Icons.local_drink),
+                    //   iconSize: 30.0,
+                    // ),
                     Container(
                       height: 65.0,
                       width: 120.0,
@@ -199,10 +200,10 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () async {
               var hasil = await Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => DetailsPage(
-                        // heroTag: imgPath,
-                        // foodName: foodName,
-                        // foodPrice: price,
-                        // jumlah: jumlah,
+                        heroTag: imgPath,
+                        foodName: foodName,
+                        foodPrice: price,
+                        jumlah: jumlah,
                       )));
               if (hasil != null) {
                 setState(() {
